@@ -20,7 +20,11 @@ router.post("/", async (req, res) => {
     
 })
 
-router.post("/", [check("name").not().isEmpty().trim()], async (req, res) => {
+router.post("/", [
+    check("name").not().isEmpty().trim(),
+    check("age").not().isEmpty().trim(),
+    check("name").isLength({min: 5, max: 15})
+], async (req, res) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         res.json({error: errors.array()})
@@ -31,7 +35,11 @@ router.post("/", [check("name").not().isEmpty().trim()], async (req, res) => {
     
 })
 
-router.put("/:id", async (req, res) => {
+router.put("/:id",  [
+    check("name").not().isEmpty().trim(),
+    check("age").not().isEmpty().trim(),
+    check("name").isLength({min: 5, max: 15})
+], async (req, res) => {
     const updatedUser = await User.update(req.body, {
         where:{
             id: req.params.id

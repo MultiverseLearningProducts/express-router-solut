@@ -16,7 +16,11 @@ router.get("/:id", async (req, res) => {
     res.json(fruit);
 })
 
-router.post("/", [check("color").not().isEmpty().trim()], async (req, res) => {
+router.post("/", [
+    check("color").not().isEmpty().trim(),
+    check("name").not().isEmpty().trim(),
+    check("name").isLength({min: 5, max: 20})
+], async (req, res) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         res.json({error: errors.array()})
@@ -26,7 +30,11 @@ router.post("/", [check("color").not().isEmpty().trim()], async (req, res) => {
     }
 })
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", [
+    check("color").not().isEmpty().trim(),
+    check("name").not().isEmpty().trim(),
+    check("name").isLength({min: 5, max: 20})
+], async (req, res) => {
     const updatedFruit = await Fruit.update(req.body, {
         where:{
             id: req.params.id
