@@ -3,7 +3,7 @@ execSync('npm install');
 execSync('npm run seed');
 
 const request = require("supertest")
-const { sequelize } = require('./db');
+const db = require('./db/connection');
 const { Fruit, User } = require('./models/index')
 const app = require('./src/app');
 const seedData = require("./seedData");
@@ -106,6 +106,7 @@ describe('./users/:id endpoint', () => {
 })
 
 describe("POST /users", () => {
+    
     test("should add a new user", async () => {
         const response = await request(app)
             .post("/users")

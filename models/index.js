@@ -1,4 +1,7 @@
-const { Fruit } = require('./Fruit')
-const { User } = require('./User')
+const Fruit = require('./Fruit')
+const User = require('./User')
 
-module.exports = { Fruit, User };
+module.exports = { 
+    Fruit,
+    User 
+};

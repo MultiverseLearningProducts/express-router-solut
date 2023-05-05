@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
     
 })
 
-router.post("/", [
+router.post("/",  [
     check("name").not().isEmpty().trim(),
     check("age").not().isEmpty().trim(),
     check("name").isLength({min: 5, max: 15})
@@ -28,7 +28,7 @@ router.post("/", [
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         res.json({error: errors.array()})
-    }else{
+    } else{
         const user = await User.create(req.body);
         res.json(user);
     }
