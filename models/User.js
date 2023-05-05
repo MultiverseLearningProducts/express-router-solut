@@ -1,9 +1,9 @@
 const Sequelize = require("sequelize");
-const { sequelize } = require("../db");
+const db = require("../db/connection");
 
-const User = sequelize.define("user", {
+const User = db.define("user", {
     name: Sequelize.STRING,
     age: Sequelize.NUMBER
 })
 
-module.exports = { User };
+module.exports = User;

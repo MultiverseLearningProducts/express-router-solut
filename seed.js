@@ -1,9 +1,9 @@
 const { Fruit, User } = require("./models/index")
 const { seedFruits, seedUsers } = require("./seedData");
-const { sequelize } = require("./db")
+const db = require("./db/connection")
 
 const syncSeed = async () => {
-    await sequelize.sync({force: true});
+    await db.sync({force: true});
     await Fruit.bulkCreate(seedFruits);
     await User.bulkCreate(seedUsers);
 }
